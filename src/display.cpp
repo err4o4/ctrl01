@@ -11,11 +11,10 @@ void DisplayManager::begin() {
     tft.init();
     tft.setRotation(1);
     tft.fillScreen(TFT_BLACK);
-    //digitalWrite(TFT_BL, HIGH);
 
-    ledcSetup(0, 5000, 8); // 0-15, 5000, 8
-    ledcAttachPin(TFT_BL, 0); // TFT_BL, 0 - 15
-    ledcWrite(0, 127); // 0-15, 0-255 (with 8 bit resolution); 0=totally dark;255=totally shiny
+    ledcSetup(0, 5000, 8); 
+    ledcAttachPin(TFT_BL, 0); 
+    ledcWrite(0, 127);
 
     sprite.setColorDepth(16);
     sprite.createSprite(tft.width(), tft.height()); 
@@ -26,18 +25,15 @@ void DisplayManager::disable() {
     tft.fillScreen(TFT_BLACK);
     tft.writecommand(ST7789_DISPOFF);    
     tft.writecommand(ST7789_SLPIN);
-    //digitalWrite(TFT_BL, LOW);
     ledcWrite(0, 0);
     isEnabled = false;
 }
 
 void DisplayManager::drawText(String line, int yPos, int xOffset, int fontSize, int textColor, int xPosSelect) {
-
     sprite.setTextSize(fontSize);
     sprite.setTextColor(textColor);
 
     sprite.setTextFont(0);
-
     int textWidth = tft.textWidth(line) * fontSize + 20;
 
     static int xPosSongName = xOffset;
@@ -60,7 +56,6 @@ void DisplayManager::drawText(String line, int yPos, int xOffset, int fontSize, 
 }
 
 void DisplayManager::updateDisplay(AppleMediaService::MediaInformation media_info, float battery_voltage, bool isConnected, unsigned long initialFreeHeap) {
-
     if(!isEnabled) {
         begin();
     }

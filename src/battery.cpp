@@ -4,7 +4,6 @@
 #include <esp_sleep.h>
 #include <logger.h>
 
-
 BatteryManager::BatteryManager(int pin) : pin(pin), vref(1100), battery_voltage(0), previousMillis(0) {}
 
 void BatteryManager::begin() {

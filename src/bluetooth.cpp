@@ -147,9 +147,7 @@ namespace Bluetooth {
         LOG_ERROR("StartMediaService failed");
         return;
       }
-
     }
-
   }
 
   void Begin(const std::string & device_name) {

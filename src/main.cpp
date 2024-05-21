@@ -9,8 +9,8 @@
 #include "logger.h"
 #include "esp_system.h"
 
-const unsigned long sleepTimeout   = 1000 * 30; // 5 min
-const unsigned long displayTimeout = 1000 * 10;     // 30 sec
+const unsigned long sleepTimeout   = 1000 * 60 * 3; // 3 min
+const unsigned long displayTimeout = 1000 * 30;     // 30 sec
 
 BatteryManager batteryManager(34);
 ButtonManager buttonManager;
@@ -61,10 +61,10 @@ void handleBLEDisplay(void * parameter) {
 }
 
 void handleSleep(void * parameter) {
-  // current 
-  // leds + display 150mA
-  // off 80mA
-  // sleep 1mA
+  // current
+  // leds + display on 150mA
+  // leds + display off 80mA
+  // deep sleep 1mA
   for (;;) {
     if (millis() - startTime >= displayTimeout && disableDisplay == false) {
       LOG_TRACE("Turn display and LEDs off");
